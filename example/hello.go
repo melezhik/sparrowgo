@@ -6,9 +6,12 @@ import (
   "encoding/json"
   "io/ioutil"
   "log"
+  "github.com/melezhik/sparrowgo"
 )
 
 func main() {
+
+  fmt.Printf("%s\n",sparrowgo.Hello("Sparrow"))
 
   type Params struct {
     Foo string
