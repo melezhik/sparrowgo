@@ -1,7 +1,7 @@
 use Sparrow6::DSL;
 
 my $s = task-run ".", %(
-  foo => "Hello"
+  message => "Hello"
 );
 
 say "message: ", $s<state><Message>;

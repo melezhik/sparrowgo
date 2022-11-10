@@ -1,4 +1,4 @@
-module example/hello
+module example/task
 
 go 1.19
 
