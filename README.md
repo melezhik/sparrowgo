@@ -12,7 +12,7 @@ Go interface for Sparrow tasks
 package main
 
 import (
-	"fmt"
+  "fmt"
   "github.com/melezhik/sparrowgo"
 )
 
