@@ -7,6 +7,8 @@ import (
 
 func main() {
 
+  sparrowgo.DebugOn()
+
   type Params struct {
     Message string
   }

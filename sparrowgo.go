@@ -12,18 +12,35 @@ import (
 
 var crd = os.Getenv("cache_root_dir")
 
-// Hello returns a greeting for the named person.
-func Hello(name string) string {
-    // Return a greeting that embeds the name in a message.
-    message := fmt.Sprintf("Hi, %v. Welcome!", name)
-    return message
+type settings struct {
+  debug bool
 }
+
+var settings_ = settings {debug: false}
+
+func DebugOn () {
+  settings_.debug = true
+}
+
+func DebugOff () {
+  settings_.debug = false
+}
+
+func log_ (pattern string, line string) {
+
+  if settings_.debug ==true {
+    fmt.Printf(pattern,line)
+  }
+}
+
+// Return task config as struct.
 
 func Config (data interface{}) {
 
-  fmt.Printf("CACHE_ROOT_DIR: %s\n",crd)
+  log_(">>> Config | cache_root_dir: %s\n",crd)
 
   jsonFile, err := os.Open(fmt.Sprintf("%s/config.json",crd))
+
   if err != nil {
     log.Fatal(err)
   }
@@ -32,7 +49,7 @@ func Config (data interface{}) {
 
   byteValue, _ := ioutil.ReadAll(jsonFile)
 
-  fmt.Printf("json: %s\n",byteValue)
+  log_(">>> Config | json: %s\n",string(byteValue))
 
   if err := json.Unmarshal(byteValue, &data); err != nil {
     panic(err)
@@ -40,13 +57,17 @@ func Config (data interface{}) {
 
 }
 
+// Set task output data.
+
 func UpdateState (data interface{}) {
+
+  log_(">>> UpdateState | cache_root_dir: %s\n",crd)
 
   file, _ := json.MarshalIndent(data, "", " ")
 
   _ = ioutil.WriteFile(fmt.Sprintf("%s/state.json",crd), file, 0644)
 
-  fmt.Printf("update %s/state.json\n",crd)
+  log_(">>> UpdateState | update %s/state.json\n",crd)
 
-  return 
+  return
 }

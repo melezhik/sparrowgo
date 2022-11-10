@@ -75,3 +75,18 @@ Output will be:
 13:08:47 :: Sparrow says: Hello from Raku
 message: Hello from Go
 ```
+
+# Other options
+
+
+## Enable debug
+
+```go
+sparrowgo.DebugOn()
+```
+
+## Disable debug
+
+```go
+sparrowgo.DebugOff()
+```
