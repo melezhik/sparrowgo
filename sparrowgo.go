@@ -33,6 +33,11 @@ func log_ (pattern string, line string) {
   }
 }
 
+func Os () string {
+
+  return os.Getenv("os")
+}
+
 // Return task config as struct.
 
 func Config (data interface{}) {
@@ -71,3 +76,4 @@ func UpdateState (data interface{}) {
 
   return
 }
+

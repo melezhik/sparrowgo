@@ -90,3 +90,19 @@ sparrowgo.DebugOn()
 ```go
 sparrowgo.DebugOff()
 ```
+
+## Get know OS name
+
+```go
+  switch sparrowgo.Os() {
+    case "darwin":
+      fmt.Println("hello Mac")
+    case "arch":
+      fmt.Println("hello Arch Linux")
+    case "debian":
+      fmt.Println("hello Debian")
+    // so on
+  }
+```
+
+To get the list of supported OS follow this [link](https://github.com/melezhik/Sparrow6/blob/master/documentation/development.md#recognizable-os-list)
