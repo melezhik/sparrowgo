@@ -72,10 +72,10 @@ Output will be:
 ```
 [task run: task.bash - .]
 [task stdout]
-13:08:47 :: CACHE_ROOT_DIR: /Users/alekseimelezhik/.sparrow6/tmp/7307517
+13:08:47 :: CACHE_ROOT_DIR: /Users/melezhik/.sparrow6/tmp/7307517
 13:08:47 :: json: { "message" : "Hello" }
 13:08:47 :: 
 13:08:47 :: Sparrow says: Hello
-13:08:47 :: update /Users/alekseimelezhik/.sparrow6/tmp/7307517/state.json
+13:08:47 :: update /Users/melezhik/.sparrow6/tmp/7307517/state.json
 message: Hello from Go
 ```
