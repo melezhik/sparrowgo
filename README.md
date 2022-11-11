@@ -1,6 +1,6 @@
 # sparrowgo
 
-Go interface for Sparrow tasks
+Write SparrowCI tasks on Golang
 
 # How to
 
@@ -47,12 +47,6 @@ func main() {
   sparrowgo.UpdateState(&Message{Message : "Hello from Go"})
 
 }
-```
-
-## Create task binary
-
-```bash
-go build .
 ```
 
 ## Create Sparrow wrapper
@@ -140,12 +134,6 @@ func main() {
 }
 ```
 
-Build binary:
-
-```bash
-go build .
-```
-
 Create subtask:
 
 ```bash
@@ -181,15 +169,6 @@ func main() {
   sparrowgo.UpdateState(Message{Message: "Hello from subtask"})
 }
 ```
-
-Build sub task:
-
-
-```bash
-cd tasks/foo
-go build .
-```
-
 
 Create Sparrow wrapper:
 
