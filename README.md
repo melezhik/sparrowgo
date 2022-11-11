@@ -18,6 +18,8 @@ import (
 
 func main() {
 
+  sparrowgo.DebugOn()
+
   type Params struct {
     Message string
   }
@@ -26,23 +28,23 @@ func main() {
     Message string
   }
 
-  type Output struct {
-    State Message `json:"state"`
-  }
-
   var params Params
 
   sparrowgo.Config(&params)
 
   fmt.Printf("Sparrow says: %s\n", params.Message)
 
-  data := Output{ 
-    State: Message{ 
-      Message : "Hello from Go" ,
-    },
+  switch sparrowgo.Os() {
+    case "darwin":
+      fmt.Println("hello Mac")
+    case "arch":
+      fmt.Println("hello Arch Linux")
+    case "debian":
+      fmt.Println("hello Debian")
+    // so on
   }
 
-  sparrowgo.UpdateState(data)
+  sparrowgo.UpdateState(&Message{Message : "Hello from Go"})
 
 }
 ```
@@ -65,6 +67,12 @@ my $s = task-run ".", %(
 );
 
 say "message: ", $s<state><Message>;
+```
+
+Run:
+
+```bash
+raku test.raku
 ```
 
 Output will be:
@@ -106,3 +114,115 @@ sparrowgo.DebugOff()
 ```
 
 To get the list of supported OS follow this [link](https://github.com/melezhik/Sparrow6/blob/master/documentation/development.md#recognizable-os-list)
+
+# Advanced topics
+
+## Hooks and subtasks
+
+
+Create hook task, `hook.go`
+
+```go
+package main
+
+import (
+  "fmt"
+  "github.com/melezhik/sparrowgo"
+)
+
+func main() {
+
+  // sparrowgo.DebugOn()
+
+  type Params struct {
+    Message string
+  }
+
+  p := Params{Message: "hello from main"}
+
+  fmt.Println(p.Message)
+
+  sparrowgo.RunTask("foo",&p)
+
+}
+```
+
+Build binary:
+
+```bash
+go build .
+```
+
+Create subtask:
+
+```bash
+mkdir -p tasks/foo
+```
+
+`tasks/foo/task.go`
+
+```go
+package main
+
+import (
+  "fmt"
+  "github.com/melezhik/sparrowgo"
+)
+
+func main() {
+
+  // sparrowgo.DebugOn()
+
+  type Vars struct {
+    Message string
+  }
+
+  type Message struct {
+    Message string
+  }
+
+  var task_vars Vars
+
+  sparrowgo.TaskVars(&task_vars)
+
+  fmt.Printf("foo subtask get this: %s\n",task_vars.Message)
+
+  sparrowgo.UpdateState(Message{Message: "Hello from subtask"})
+}
+```
+
+Build sub task:
+
+
+```bash
+cd tasks/foo
+go build .
+```
+
+
+Create Sparrow wrapper:
+
+`test.raku`:
+
+```raku
+use Sparrow6::DSL;
+
+my $s = task-run ".";
+
+say $s<state><Message>;
+```
+
+Run:
+
+```bash
+raku test.raku
+```
+
+Output will be:
+
+```
+[task run: task - .]
+[task stdout]
+12:59:14 :: foo subtask get this: hello from main
+Hello from subtask
+```

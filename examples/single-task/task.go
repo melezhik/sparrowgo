@@ -1,7 +1,7 @@
 package main
 
 import (
-	"fmt"
+  "fmt"
   "github.com/melezhik/sparrowgo"
 )
 
@@ -15,10 +15,6 @@ func main() {
 
   type Message struct {
     Message string
-  }
-
-  type Output struct {
-    State Message `json:"state"`
   }
 
   var params Params
@@ -37,12 +33,6 @@ func main() {
     // so on
   }
 
-  data := Output{ 
-    State: Message{ 
-      Message : "Hello from Go" ,
-    },
-  }
-
-  sparrowgo.UpdateState(data)
+  sparrowgo.UpdateState(&Message{Message : "Hello from Go"})
 
 }
