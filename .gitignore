@@ -1,2 +1,3 @@
 .cache/
 *.go.bin
+*.sum
