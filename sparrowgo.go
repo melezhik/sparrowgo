@@ -96,7 +96,7 @@ func UpdateState (data interface{}) {
 
   log_(">>> UpdateState | cache_root_dir: %s\n",crd)
 
-  js, err := json.Marshal(task_state{State: data})
+  js, err := json.Marshal(data)
 
   if err != nil {
     panic(err)
