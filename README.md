@@ -60,7 +60,7 @@ my $s = task-run ".", %(
   message => "Hello from Raku"
 );
 
-say "message: ", $s<state><Message>;
+say "message: ", $s<Message>;
 ```
 
 Run:
@@ -179,7 +179,7 @@ use Sparrow6::DSL;
 
 my $s = task-run ".";
 
-say $s<state><Message>;
+say $s<Message>;
 ```
 
 Run:

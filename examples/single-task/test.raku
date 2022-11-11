@@ -4,4 +4,4 @@ my $s = task-run ".", %(
   message => "Hello"
 );
 
-say "message: ", $s<state><Message>;
+say "message: ", $s<Message>;

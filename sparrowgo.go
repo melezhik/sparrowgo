@@ -17,10 +17,6 @@ type settings struct {
   debug bool
 }
 
-type task_state struct {
-  State interface{}  `json:"state"`
-}
-
 var settings_ = settings {debug: false}
 
 func DebugOn () {
