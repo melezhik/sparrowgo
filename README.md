@@ -113,7 +113,6 @@ To get the list of supported OS follow this [link](https://github.com/melezhik/S
 
 ## Hooks and subtasks
 
-
 Create hook task, `hook.go`
 
 ```go
@@ -196,3 +195,36 @@ Output will be:
 12:59:14 :: foo subtask get this: hello from main
 Hello from subtask
 ```
+
+## Get task state
+
+Use `sparrowgo.GetState` function to get task state.
+
+Example:
+
+`task.go`:
+
+```go
+package main
+
+import (
+  "fmt"
+  "github.com/melezhik/sparrowgo"
+)
+
+func main() {
+
+  // sparrowgo.DebugOn()
+
+  type State struct { Message string }
+
+  var state State
+
+  sparrowgo.GetState(&state)
+
+  fmt.Printf("task state: %s\n",state.Message)
+
+}
+```
+
+
