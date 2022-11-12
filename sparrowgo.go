@@ -86,6 +86,7 @@ func TaskVars (data interface{}) {
   }
 
 }
+
 // Set task output data.
 
 func UpdateState (data interface{}) {
@@ -107,6 +108,29 @@ func UpdateState (data interface{}) {
   return
 }
 
+// Return task state as struct.
+
+func GetState (data interface{}) {
+
+  log_(">>> GetState | cache_root_dir: %s\n",crd)
+
+  jsonFile, err := os.Open(fmt.Sprintf("%s/state.json",crd))
+
+  if err != nil {
+    log.Fatal(err)
+  }
+
+  defer jsonFile.Close()
+
+  byteValue, _ := ioutil.ReadAll(jsonFile)
+
+  log_(">>> GetState | json: %s\n",string(byteValue))
+
+  if err := json.Unmarshal(byteValue, &data); err != nil {
+    panic(err)
+  }
+
+}
 // Impliment run_task
 
 func RunTask (path string, params interface{}) {
