@@ -153,3 +153,23 @@ func RunTask (path string, params interface{}) {
 
 }
 
+// Impliment set_stdout
+
+func SetStdout (lines string) {
+
+  log_(">>> GetState | cache_dir: %s\n",cd)
+
+  filename := fmt.Sprintf("%s/stdout",cd)
+
+  f, err := os.OpenFile(filename, os.O_APPEND|os.O_WRONLY|os.O_CREATE, 0600)
+
+  if err != nil {
+    panic(err)
+  }
+
+  defer f.Close()
+
+  if _, err = f.WriteString(lines); err != nil {
+    panic(err)
+  }
+}

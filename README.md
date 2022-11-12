@@ -227,4 +227,10 @@ func main() {
 }
 ```
 
+## Set stdout
 
+Use `SetStdout` function to register some stdout in hook:
+
+```go
+sparrowgo.SetStdout("here we go\nnext line")
+```
