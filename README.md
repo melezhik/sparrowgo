@@ -234,3 +234,11 @@ Use `SetStdout` function to register some stdout in hook:
 ```go
 sparrowgo.SetStdout("here we go\nnext line")
 ```
+
+## Ignore task error
+
+Use `IgnoreError` function to ingnore task error (none zero exit code):
+
+```go
+sparrowgo.IgnoreError()
+```

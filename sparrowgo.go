@@ -173,3 +173,9 @@ func SetStdout (lines string) {
     panic(err)
   }
 }
+
+func IgnoreError () {
+
+  fmt.Println("ignore_task_error:")
+
+}
