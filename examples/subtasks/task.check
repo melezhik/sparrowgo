@@ -1,1 +1,5 @@
 foo subtask get this: hello from main
+begin:
+hook: here we go
+next line
+end:
