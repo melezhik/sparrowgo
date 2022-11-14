@@ -13,8 +13,12 @@ func main() {
     Message string
   }
 
+  type Hello struct {
+    Hello string
+  }
+
   type Message struct {
-    Message string
+    Message Hello
   }
 
   var task_vars Vars
@@ -23,5 +27,9 @@ func main() {
 
   fmt.Printf("foo subtask get this: %s\n",task_vars.Message)
 
-  sparrowgo.UpdateState(Message{Message: "Hello from subtask"})
+  sparrowgo.UpdateState(Message{
+     Message: Hello{
+        Hello: "Hello from subtask",
+      },
+  })
 }

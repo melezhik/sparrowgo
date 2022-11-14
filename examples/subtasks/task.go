@@ -9,12 +9,12 @@ func main() {
 
   // sparrowgo.DebugOn()
 
-  type State struct { Message string }
+  // var state interface {}
 
-  var state State
+  state := make(map[string](map[string]interface{}))
 
   sparrowgo.GetState(&state)
 
-  fmt.Printf("task state: %s\n",state.Message)
+  fmt.Printf("Task state: %s\n",state["Message"]["Hello"])
 
 }
